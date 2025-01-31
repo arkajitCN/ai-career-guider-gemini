@@ -1,5 +1,6 @@
 "use server";
 
+import { generateAIInsights } from "@/features/insights/server/action";
 import { db } from "@/lib/prisma";
 import { TOnboardingFormSchema } from "@/validations/schemas/onboarding";
 import { auth } from "@clerk/nextjs/server";
@@ -62,7 +63,10 @@ export async function updateUser(data: TOnboardingFormSchema) {
     revalidatePath("/");
     return result.user;
   } catch (error) {
-    console.error("Error updating user and industry:", error.message);
+    if (error instanceof Error) {
+      console.error("Error updating user and industry:", error.message);
+    }
+
     throw new Error("Failed to update profile");
   }
 }

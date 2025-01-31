@@ -140,7 +140,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ industries }) => {
                 min="0"
                 max="50"
                 placeholder="Enter years of experience"
-                {...register("experience", { valueAsNumber: true })}
+                {...register("experience")}
               />
             </FormField>
 
